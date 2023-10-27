@@ -12,18 +12,18 @@
         <div>
             <table>
                 <thead>
-                  <tr>
-                    <th>Sl.no</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
+                    <tr>
+                        <th>Sl.no</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
                 </thead>
                 <tbody>
-                   <tr v-for="(elem, i) in items" :key="elem.id"> 
-                       <td>{{ i + 1 }}</td>
-                       <td>{{ elem?.name }}</td>
-                       <td>{{ elem?.dec }}</td>
-                   </tr>
+                    <tr v-for="(elem, i) in items" :key="elem.id">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ elem?.name }}</td>
+                        <td>{{ elem?.dec }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -31,44 +31,57 @@
         <!----------------------------- Parent data from parent to child  -------------------------------------------->
 
         <div>
-            <ChildComponent :name="items" title="Welcome to the parent to the child"/>
+            <ChildComponent :name="items" title="Welcome to the parent to the child" />
         </div>
 
         <!----------------------------- Child to parent ----------------------------------------------------------------->
         <div>
             <h1>Welcome To the Child to parent</h1>
             <h1> {{ title }} </h1>
-            <ChildComponent v-on:changeTitle="incChildCounter($event)" :name="items" title="Welcome to the parent to the child"/>
+            <ChildComponent v-on:changeTitle="incChildCounter($event)" :name="items"
+                title="Welcome to the parent to the child" />
         </div>
 
         <div>
             <h1>Welcome To the Child to parent part2</h1>
             <h1> {{ title }} </h1>
-            <ChildComponent @changeTitle2="incChildCounter2($event)" :name="items" title="Welcome to the parent to the child"/>
+            <ChildComponent @changeTitle2="incChildCounter2($event)" :name="items"
+                title="Welcome to the parent to the child" />
         </div>
 
         <!-- Input OnChange -->
         <div>
             <h1> Welcome To Onchange Input Vue </h1>
             <h2>{{ myName }}</h2>
-            <input placeholder="name" v-model="myName" type="text" @OnChange="handleNameChange"/>
+            <input placeholder="name" v-model="myName" type="text" @OnChange="handleNameChange" />
         </div>
         <!-- Form Data -->
         <div>
             <h1> Welcome To The Vue Form </h1>
             <FormComponent />
         </div>
-        <!--  Filters  -->
+
+
+        <!------------------------------------------  Filters  ---------------------------------------------->
+
+
         <div>
             <h1> Welcome To Filter In Vue JS </h1>
             <h2>{{ filterName | UCase }}</h2>
         </div>
 
-          <!--  LifeCycle Section  -->
-          <h1>Welcome to the the LifeCycle Section</h1>
-          <p>Life cycle method shirf Component me he kaam karta hai, application lavel me kaam nahi karta hai</p>
-          <!-- BeforeCreate and Created -->
-          <div>
+        <!--------------------------------------  LifeCycle Section  ---------------------------------------->
+
+
+        <h1>Welcome to the the LifeCycle Section</h1>
+        <p>Life cycle method shirf Component me he kaam karta hai, application lavel me kaam nahi karta hai</p>
+
+
+
+        <!------------------------------------- BeforeCreate and Created --------------------------------------->
+
+
+        <div>
             <h1>BeforeCreate and Created</h1>
             <!-- Jab v Hamara component Banane wala hota hai ave bana nahi hai tab beforeCreate Life cycle call hota hai  -->
             <h3> Before Create </h3>
@@ -77,19 +90,28 @@
             <!-- Jab v hamara data or events set hote hai tab created lifecycle call hota hai -->
             <h3> Created </h3>
             <p> Jab v hamara data or events set hote hai tab created lifecycle call hota hai </p>
-           
+
         </div>
-          <!-- BeforeCreate and Created -->
+
+        <!--------------------------------------- BeforeCreate and Created ---------------------------------------------->
+
+
         <div>
             <h1>beforeMount and Mounted</h1>
             <!-- Jab v hamara html render hone wala hota hai ave huwa nahi hota hai tab ye Before Mount Life cycle call hota hai  -->
             <h3> Before Mount </h3>
-            <p> Jab v hamara html render hone wala hota hai ave huwa nahi hota hai tab ye Before Mount Life cycle call hota hai </p>
+            <p> Jab v hamara html render hone wala hota hai ave huwa nahi hota hai tab ye Before Mount Life cycle call hota
+                hai </p>
             <p>{{ createdName }}</p>
             <!-- Jab hamara html render ho chuka hota hai tab ye wala call hota hai -->
             <h3> Mounted </h3>
-            <p> Jab hamara html render ho chuka hota hai tab ye wala call hota hai, HTML DOM Modify karne k liye mounted use karo </p>
+            <p> Jab hamara html render ho chuka hota hai tab ye wala call hota hai, HTML DOM Modify karne k liye mounted use
+                karo </p>
         </div>
+
+
+        <!--------------------------------------- beforeDestroy and destroyed ----------------------------------------------->
+
         <div>
             <h1>beforeDestroy and destroyed</h1>
             <!-- Jab v hamara component DOM se hatne wala hota hai tab ye Before Mount Life cycle call hota hai  -->
@@ -117,9 +139,9 @@ export default {
         data: String
     },
     components: {
-       ChildComponent,
-       FormComponent,
-       DestroyedComponent
+        ChildComponent,
+        FormComponent,
+        DestroyedComponent
     },
     methods: {
         incCount() {
@@ -134,21 +156,21 @@ export default {
         },
 
         incChildCounter(title) {
-            console.log({title})
+            console.log({ title })
             this.title = title
             // this.childCount = this.childCount + 1
         },
 
         incChildCounter2(title) {
-            console.log({title})
+            console.log({ title })
             this.title2 = title
             // this.childCount = this.childCount + 1
         },
 
-        handleNameChange(){
+        handleNameChange() {
             console.log(this.myName)
         },
-        handleBeforeDestroyed(){
+        handleBeforeDestroyed() {
             this.displayDestroyed = !this.displayDestroyed;
         },
     },
@@ -177,19 +199,19 @@ export default {
             ]
         }
     },
-    beforeCreate: function(){
+    beforeCreate: function () {
         console.log("before create")
     },
-    created: function(){      //
+    created: function () {      //
         console.log("created")
         this.createdName = "alam"
     },
-    beforeMount: function(){
+    beforeMount: function () {
         console.log("before mounted")
         console.log(this.$el);
     },
     // HTML DOM Modify karne k liye mounted use karo
-    mounted: function(){
+    mounted: function () {
         console.log('mounted')
         console.log(this.$el);
     },
