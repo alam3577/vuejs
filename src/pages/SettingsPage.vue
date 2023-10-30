@@ -25,7 +25,14 @@
             <ProductsComponent />
             <SiteMapVue />
 
+            <!----------------------------------WATCHERS -------------------------------------------- -->
+            <h3 style="border-bottom: 1px solid black;">WATCHERS</h3>
+            <h5>{{ count }}</h5>
+            <button @click="count=count+1">Inc Num</button>
             
+            <br>
+            <br>
+          
         </div>
     </div>
 </template>
@@ -44,8 +51,14 @@ export default {
     },
     data() {
         return {
-            initialComponent: "SignInComponent"
+            initialComponent: "SignInComponent",
+            count: 0
         }
+    },
+    watch: {
+        count(val, prevState) {
+        alert(`Count is changed ${val} ${prevState}`)
+       }
     },
     methods: {
         handleSignInClick() {
