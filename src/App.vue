@@ -16,6 +16,9 @@
       <li>
          <router-link to="/settings">Settings</router-link>
       </li>
+      <li>
+         <router-link to="/store">Store</router-link>
+      </li>
     </ul>
     <router-view></router-view>
   </div>

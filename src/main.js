@@ -5,6 +5,7 @@ import HomeComponent from "./components/HomeComponent.vue";
 import ApiCallsAndRoutings from './pages/ApiCallsAndRoutings.vue';
 import SettingsPage from './pages/SettingsPage.vue';
 import AboutPage from './pages/AboutPage.vue';
+import StorePage from './pages/StorePage.vue';
 
 Vue.config.productionTip = false
 Vue.filter('UCase', function (val) {
@@ -30,10 +31,12 @@ Vue.directive("size", {
 })
 
 const routes = [
-  { path: '/', component: HomeComponent },
-  { path: '/api', component: ApiCallsAndRoutings },
-  { path: '/settings', component: SettingsPage },
-  { path: '/about', component: AboutPage },
+  { path: '/', component: HomeComponent, name: 'Home' },
+  { path: '/api', component: ApiCallsAndRoutings, name: 'API' },
+  { path: '/settings', component: SettingsPage, name: 'Settings' },
+  { path: '/about', component: AboutPage, name: 'About' },
+  { path: '/user/:id', component: AboutPage, name: 'User' },
+  { path: '/store', component: StorePage, name: 'Store' },
 ];
 
 Vue.use(VueRouter)

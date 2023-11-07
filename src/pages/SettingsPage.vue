@@ -22,17 +22,29 @@
             <br>
             <!----------------------------------MIXINS -------------------------------------------- -->
             <h3 style="border-bottom: 1px solid black;">MIXINS</h3>
+            <p class="">Duplicate code ko remove karne k liye hum log mixins ka use karte hai. Jo data property hum log mixins me use karte wo same data property ko ham log jaha mixins ko import karte hai waha use kar sakte hai.</p>
             <ProductsComponent />
             <SiteMapVue />
 
             <!----------------------------------WATCHERS -------------------------------------------- -->
             <h3 style="border-bottom: 1px solid black;">WATCHERS</h3>
+            <p>Data property k under jo variable banate hai data store karne k liye. Same use karna hai watch object k under. issay ye hoga ki jab v wo data property change hoga hame watch k under likha function trigger ho jaiga</p>
             <h5>{{ count }}</h5>
             <button @click="count=count+1">Inc Num</button>
             
             <br>
             <br>
-          
+            <!---------------------------------- COMPUTED PROPERTIES -------------------------------------------- -->
+            <h3 style="border-bottom: 1px solid black;">COMPUTED PROPERTIES</h3>
+            <p>It is used for complex logic writing. that means instead of using of complex logic in one line we will create function for that. <br>
+             here inside data we have comp property if you want to extracy the data value you have to deep down in to it.
+            </p>
+            <p>In the below example we can see that for extracting just name, we are using some complex logic.
+                . A computed property will only re-evaluate when some of its reactive dependencies have changed. This means as long as author.books has not changed, multiple access to publishedBooksMessage will immediately return the previously computed result without having to run the getter function again.
+            </p>
+            <h5>{{ getName }}</h5>
+            <h5>{{ count }}</h5>
+            <button @click="count=count+1">Inc Num</button>
         </div>
     </div>
 </template>
@@ -52,13 +64,27 @@ export default {
     data() {
         return {
             initialComponent: "SignInComponent",
-            count: 0
+            count: 0,
+            com: {
+                data2: {
+                    data1: {
+                        data: {
+                            name: "sajjad"
+                        }
+                    }
+                }
+            }
         }
     },
     watch: {
         count(val, prevState) {
         alert(`Count is changed ${val} ${prevState}`)
        }
+    },
+    computed: {
+        getName() {
+          return this.com?.data2?.data1?.data?.name  
+        }
     },
     methods: {
         handleSignInClick() {

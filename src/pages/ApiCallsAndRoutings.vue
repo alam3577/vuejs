@@ -14,7 +14,7 @@
            <h3>Click To Get Data Result</h3>
            <ul v-for="elem in resData" :key="elem.id">
                <li>{{ elem?.id }}</li>
-               <li><router-link to="/user/${elem?.id}">{{ elem?.name }}</router-link></li>
+               <li @click="handleRoute(elem?.id)">{{ elem?.name }}</li>
                <li>{{ elem?.email }}</li>
                <li>{{ elem?.website }}</li>
            </ul>
@@ -49,6 +49,9 @@ export default {
             } catch (error) {
                 this.error = error 
             }
+        },
+        handleRoute(id) {
+            this.$router.push({name: "User", params: {id}})
         },
         async fetchDirectData() {
             try {
